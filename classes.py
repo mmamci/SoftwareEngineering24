@@ -1,3 +1,5 @@
+from datetime import datetime
+
 class Person:
    def __init__(self, first_name, last_name):
       self.first_name = first_name
@@ -5,10 +7,16 @@ class Person:
 
 
 class Subject(Person):
-    def __init__(self,first_name, last_name,  sex, birth_date):
+    def __init__(self,first_name : str, last_name : str,  sex : str, birth_date : str):
+        super().__init__(first_name,last_name)
+  
         self.first_name = first_name
         self.last_name = last_name
-        self.__birth_date = birth_date
+
+        try:
+          self.__birth_date = datetime.fromisoformat(birth_date)
+        except Exception as e:
+           print(e)
     
         self.sex = sex
 
@@ -37,3 +45,4 @@ class Experiment:
         self.name = name
         self.date = date
 
+subject = Subject("Moritz", "Mattes", "Male", "2004-12-02")
